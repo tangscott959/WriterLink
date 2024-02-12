@@ -42,13 +42,19 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'feed',
-    "profiles",
-    "followers",
+    'profiles',
+    'followers',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-     'sorl.thumbnail',
+    'sorl.thumbnail',
+
+    'crispy_forms',
+    'crispy_bootstrap4',
+ 
 ]
+
+ROOT_URLCONF = 'til.urls'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,7 +64,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',
+
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'til.urls'
@@ -68,7 +75,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(PROJECT_DIR, "til/templates")
-        ],
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,6 +87,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'til.wsgi.application'
 
@@ -152,6 +160,8 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend"
 )
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 
 STATICFILES_DIRS= [
     os.path.join(PROJECT_DIR, "frontend/")
@@ -159,3 +169,6 @@ STATICFILES_DIRS= [
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 STATIC_URL = "/static/"
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
